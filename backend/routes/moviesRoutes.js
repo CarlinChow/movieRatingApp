@@ -13,7 +13,4 @@ router.route('/').get(getMovies).post(protect, postMovie)
 // post review for existing movie
 router.route('/:id').post(protect, postReview)
 
-//  search api for movies 
-router.route('/search/:searchQuery').get()
-
 module.exports = router

@@ -15,17 +15,14 @@ const reviewSchema = mongoose.Schema({
 })
 
 const moviesSchema = mongoose.Schema({
-    movieId: {
-        type: String,
-        unique: true,
-        required: true,
-    },
     movieDetails: {
         type: Object,
         required: true,
     },
     reviews: [reviewSchema],
     ratings: Number,
+}, {
+    timestamp: true,
 })
 
 module.exports = mongoose.model('Movies', moviesSchema)

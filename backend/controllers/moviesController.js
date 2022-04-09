@@ -1,6 +1,5 @@
 const Movies = require('../models/moviesModel')
 
-
 //  @route: GET /api/movies
 //  @desc:  get movies from database
 //  @access: PUBLIC
