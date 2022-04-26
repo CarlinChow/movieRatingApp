@@ -1,7 +1,6 @@
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { json } = require('express/lib/response')
 require('express-async-errors')
 
 //  @route: POST /api/users/
@@ -15,11 +14,16 @@ const registerUser = async(req, res) => {
   }
 
   // check if user exists
-  const user = await User.findOne({ email })
-
-  if(user){
+  const duplicateEmail = await User.findOne({ email })
+  if(duplicateEmail){
     res.status(400)
-    throw new Error('User already exists')
+    throw new Error('Email address already in use')
+  }
+
+  const duplicateUsername = await User.findOne({ username })
+  if(duplicateUsername){
+    res.status(400)
+    throw new Error('Username already taken')
   }
 
   // hash password
@@ -49,10 +53,9 @@ const registerUser = async(req, res) => {
 //  @desc: authenticate and log in user
 //  @access: PUBLIC
 const loginUser = async(req, res) => {
-  const { email, password } = req.body
-  console.log(password)
+  const { username, password } = req.body
   
-  const user = await User.findOne({ email })
+  const user = await User.findOne({ username })
 
   if(user && (await bcrypt.compare(password, user.password))){
     res.status(200).json({

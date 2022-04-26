@@ -10,8 +10,8 @@ const reviewSchema = mongoose.Schema({
         _id: mongoose.Schema.Types.ObjectId,
         username: String, 
     }
-},{
-    timestamp: true
+  },{
+    timestamps: true
 })
 
 const moviesSchema = mongoose.Schema({
@@ -19,10 +19,19 @@ const moviesSchema = mongoose.Schema({
         type: Object,
         required: true,
     },
+    posters: [String],
+    backdrops: [String],
+    videos: [{
+      title: String,
+      key: String,
+    }],
+    videoIndex: Number,
+    posterIndex: Number,
+    backdropIndex: Number,
     reviews: [reviewSchema],
     ratings: Number,
 }, {
-    timestamp: true,
+    timestamps: true,
 })
 
 module.exports = mongoose.model('Movies', moviesSchema)

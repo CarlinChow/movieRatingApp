@@ -4,13 +4,29 @@ const { protect } = require('../middleware/authMiddleware')
 const {
     getMovies,
     postMovie,
-    postReview
+    postMovieByID,
+    postReview, 
+    getPopularMovies,
+    getRecommendedMovies,
+    getSearchMovies,
+    getUpcomingMovies,
+    deleteMovie,
 } = require('../controllers/moviesController')
 
 // access movies in database 
 router.route('/').get(getMovies).post(protect, postMovie)
 
+router.get('/popular/:page', getPopularMovies)
+
+router.get('/recommend/:id/:page', getRecommendedMovies)
+
+router.get('/search/:query/:page', getSearchMovies)
+
+router.get('/upcoming/:page', getUpcomingMovies)
+
+router.route('/:id').post(protect, postMovieByID).delete(protect, deleteMovie)
+
 // post review for existing movie
-router.route('/:id').post(protect, postReview)
+router.route('/review/:id').post(protect, postReview)
 
 module.exports = router

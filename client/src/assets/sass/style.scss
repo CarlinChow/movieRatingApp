@@ -1,0 +1,22 @@
+@import "./partials/config";
+@import "./partials/utils";
+@import "./partials/pages";
+@import "./partials/componentStyle";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+
+
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app{
+  width: 100vw;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}

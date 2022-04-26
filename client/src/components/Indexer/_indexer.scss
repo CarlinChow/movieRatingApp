@@ -1,0 +1,12 @@
+.indexer{
+  display: flex;
+  align-items: center;
+  .indexes{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .icon{
+    cursor: pointer;
+  }
+}

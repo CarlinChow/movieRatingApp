@@ -18,7 +18,7 @@ const getMovieDetails = async(req, res) => {
     res.status(200).json(data)
 }
 
-//  @routes:    /api/moviesapi/recommend/:id
+//  @routes:    /api/moviesapi/recommend/:id/:page
 //  @desc:      gets recommended movies based on a movie
 //  access:     PUBLIC
 const getRecommendedMovies = async(req, res) => {
@@ -27,8 +27,37 @@ const getRecommendedMovies = async(req, res) => {
     res.status(200).json(data)
 }
 
+//  @routes:    /api/moviesapi/similar/:id/:page
+//  @desc:      gets similar movies based on a movie
+//  access:     PUBLIC
+const getSimilarMovies = async(req, res) => {
+  const { id, page } = req.params
+  const { data } = await axios(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.API_KEY}&language=en-US&page=${page}`)
+  res.status(200).json(data)
+}
+
+//  @routes:    /api/moviesapi/popular/:page
+//  @desc:      gets currentl popular movies
+//  access:     PUBLIC
+const getPopularMovies = async(req, res) => {
+  const page = req.params.page
+  const { data } = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=${page}`)
+  res.status(200).json(data)
+}
+
+//  @routes:    /api/moviesapi/config
+//  @desc:      get api configuration
+//  access:     PUBLIC
+const getConfigurations = async(req, res) => {
+  const { data } = await axios(`https://api.themoviedb.org/3/configuration?api_key=${process.env.API_KEY}`)
+  res.status(200).json(data)
+}
+
 module.exports = {
     searchMoviesAPI,
     getMovieDetails,
     getRecommendedMovies,
+    getSimilarMovies,
+    getPopularMovies,
+    getConfigurations,
 }

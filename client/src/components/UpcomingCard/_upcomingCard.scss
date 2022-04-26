@@ -1,0 +1,84 @@
+.upcoming-card{
+  position: relative;
+  background: $dark-shade;
+  min-height: 689px;
+  border-radius: 10px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  // align-items: center;
+  padding: 1rem;
+  color: $light-shade;
+
+  div{
+    img{
+      min-height: 540px;
+      min-width: 100%;
+      width: 100%;
+      margin-top: -3rem;
+      z-index: 1;
+      border-radius: 10px;
+      box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
+                  0 4px 25px 0px rgb(0 0 0 / 12%), 
+                  0 8px 10px -5px rgb(0 0 0 / 20%);
+      color: $light-shade;
+      text-align: center;
+      line-height: 540px;
+    }
+  
+    .content{
+      padding: 1rem;
+      
+      .header{
+        font-size: 2rem;
+      }
+      .title{
+        font-size: 1.2rem;
+        line-height: 1;
+        opacity: 80%;
+      }
+      .release-date{
+        font-size: 1rem;
+        opacity: 80%;
+      }
+    }
+  }
+  
+  .next-btn,
+  .back-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $light-shade;
+    color: $light-accent;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+    z-index: 1;
+    font-size: 2.5rem;
+    border: none;
+    outline: none;
+  }
+  .next-btn{
+    right: -0.5rem;
+  }
+  .back-btn{
+    left: -0.5rem;
+  }
+  .next-btn:hover,
+  .back-btn:hover{
+    cursor: pointer;
+  }
+}
+
+.upcoming-card:before{
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: -2rem;
+  bottom: -2rem;
+  background: $light-shade;
+  left: -100vw;
+  right: -100vw;
+}
