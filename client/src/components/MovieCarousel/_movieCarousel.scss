@@ -1,0 +1,52 @@
+.movie-carousel{
+  width: 100%;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  grid-template-rows: 22rem;
+
+  .slides-container{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 22rem;
+
+    .slide{
+      top: 0;
+      cursor: pointer;
+  
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+
+
+
+  .prev-btn,
+  .next-btn{
+    z-index: 1;
+    opacity: 0.3;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size: 4rem;
+    height: 100%;
+    color: $light-shade;
+    background: rgba(69, 69, 69, 0.5);
+    .icon{
+      color: $light-shade;
+      cursor: pointer;
+    }
+  }
+  .next-btn{
+    right: 0;
+    height: 100%;
+  }
+}

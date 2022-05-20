@@ -13,7 +13,6 @@ function App() {
         <AnimatedRoutes />
       </Router>
       <ToastContainer 
-        // theme={"colored"}
         autoClose={5000}
         closeOnClick
         draggable

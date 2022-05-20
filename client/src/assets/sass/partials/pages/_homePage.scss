@@ -11,9 +11,9 @@
     'movie movie movie'
     'footer footer footer';
   grid-template-columns: 3fr 2fr 2fr;
-  grid-template-rows: 1fr 2fr 4fr 5rem;
-  row-gap: 2rem;
-  column-gap: 1rem;
+  grid-template-rows: 21.5rem 43rem 1fr 5rem;
+  row-gap: 3rem;
+  column-gap: 2rem;
 
   .popular-card{
     grid-area: popular;

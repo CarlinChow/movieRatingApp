@@ -10,6 +10,7 @@ const {
     getRecommendedMovies,
     getSearchMovies,
     getUpcomingMovies,
+    getNowPlayingMovies,
     deleteMovie,
 } = require('../controllers/moviesController')
 
@@ -23,6 +24,8 @@ router.get('/recommend/:id/:page', getRecommendedMovies)
 router.get('/search/:query/:page', getSearchMovies)
 
 router.get('/upcoming/:page', getUpcomingMovies)
+
+router.get('/nowplaying/:page', getNowPlayingMovies)
 
 router.route('/:id').post(protect, postMovieByID).delete(protect, deleteMovie)
 

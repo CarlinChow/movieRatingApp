@@ -1,6 +1,7 @@
 import Showcase from '../components/Showcase'
 import UpcomingCard from '../components/UpcomingCard'
 import PopularCard from '../components/PopularCard'
+import MoviesSection from '../components/MoviesSection'
 import { useSelector } from 'react-redux'
 
 const HomePage = () => {
@@ -11,8 +12,9 @@ const HomePage = () => {
       <Showcase user={user}/>
       <PopularCard />
       <UpcomingCard />
-      <div>movies</div>   
-      <div>footer</div>      
+      <MoviesSection/>
+      {/* <div>movies</div>   
+      <div>footer</div>       */}
     </div>
   )
 }

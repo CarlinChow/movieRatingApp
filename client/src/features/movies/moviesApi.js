@@ -22,13 +22,16 @@ export const moviesApi = createApi({
       query: (page = 1) => `/popular/${page}`,
     }),
     getRecommendedMovies: builder.query({
-      query: (id, page = 1) => `/recommend/${id}/${page}`
+      query: ({id, page = 1}) => `/recommend/${id}/${page}`
     }),
     getSearchedMovies: builder.query({
-      query: (query, page = 1) => `/search/${query}/${page}`
+      query: ({query, page = 1}) => `/search/${query}/${page}`
     }),
     getUpcomingMovies: builder.query({
       query: (page = 1) => `/upcoming/${page}`,
+    }),
+    getNowPlayingMovies: builder.query({
+      query: (page = 1) => `/nowplaying/${page}`,
     }),
     postMovie: builder.mutation({
       query: (data) => ({
@@ -46,7 +49,7 @@ export const moviesApi = createApi({
       invalidatesTags: ['Movie'],
     }),
     postReview: builder.mutation({
-      query: (data, id) => ({
+      query: ({data, id}) => ({
         url: `/review/${id}`,
         method: 'POST',
         body: data,
@@ -65,10 +68,13 @@ export const moviesApi = createApi({
 
 export const {
   useGetMoviesQuery,
+  useLazyGetMoviesQuery,
   useGetPopularMoviesQuery,
   useGetRecommendedMoviesQuery,
   useGetSearchedMoviesQuery,
+  useLazyGetSearchedMoviesQuery,
   useGetUpcomingMoviesQuery,
+  useGetNowPlayingMoviesQuery,
   usePostMovieMutation,
   usePostMovieByIDMutation, 
   usePostReviewMutation,

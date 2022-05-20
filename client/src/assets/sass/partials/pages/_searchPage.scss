@@ -1,0 +1,13 @@
+.search-page{
+  display: grid;
+  max-width: 1500px;
+  padding: 0 4rem;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  grid-template-areas: 
+    'search search search'
+    'db db db'
+    'api api api'
+    'footer footer footer';
+}

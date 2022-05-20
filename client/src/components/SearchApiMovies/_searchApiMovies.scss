@@ -1,0 +1,35 @@
+.search-api-movies{
+  grid-area: api;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+  padding-top: 2rem;
+  background: $dark-color2;
+  position: relative;
+
+  .header{
+    font-size: 1.5rem;
+    font-family: inherit;
+    margin-left: 1rem;
+    color: $light-shade;
+    opacity: 0.9;
+  }
+
+  .movie-result-cards{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.search-api-movies:before{
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: $dark-color2;
+  left: -100vw;
+  right: -100vw;
+}

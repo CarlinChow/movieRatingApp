@@ -1,15 +1,15 @@
 .upcoming-card{
   position: relative;
-  background: $dark-shade;
+  background: $main-color;
   min-height: 689px;
   border-radius: 10px;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-  // align-items: center;
   padding: 1rem;
   color: $light-shade;
+  
 
   div{
     img{
@@ -51,7 +51,7 @@
     align-items: center;
     justify-content: center;
     background: $light-shade;
-    color: $light-accent;
+    color: $dark-shade;
     border-radius: 50%;
     position: absolute;
     top: 35%;
@@ -70,14 +70,29 @@
   .back-btn:hover{
     cursor: pointer;
   }
+
+  .spinner{
+    border: 5px solid $main-color;
+    border-top: 5px solid $light-shade;
+  }
+
+  .error-card{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    .icon{
+      font-size: 5rem;
+    }
+  }
 }
 
 .upcoming-card:before{
   content: "";
   z-index: -1;
   position: absolute;
-  top: -2rem;
-  bottom: -2rem;
+  top: -3rem;
+  bottom: -3rem;
   background: $light-shade;
   left: -100vw;
   right: -100vw;

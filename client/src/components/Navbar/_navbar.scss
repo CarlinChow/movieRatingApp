@@ -1,18 +1,13 @@
-.navbar-container{
-  width: 100%;
-  background-color: $dark-color;
-  display: flex;
-  justify-content: center;
-}
-
 .navbar{
   padding: 0.5rem 4rem;
+  width: 100%;
   max-width: 1500px;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  width: 100%;
   color: $light-shade;
+  background: $dark-color;
+  position: relative;
 
   .logo{
     display: flex;
@@ -76,8 +71,16 @@
         font-size: 1.7rem;
       }
     }
-    
   }
+}
 
-
+.navbar:before{
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: inherit;
+  left: -100vw;
+  right: -100vw;
 }

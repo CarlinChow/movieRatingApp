@@ -33,9 +33,9 @@ const Indexer = ({index, setIndex, length}) => {
       <div className='indexes'>
         {Array.from(Array(length), (item, idx) => {
           if(idx === index){
-            return <BsCircleFill />
+            return <BsCircleFill key={idx} />
           }
-          return <BsCircle onClick={()=>handleClickIndexes(idx)}/>
+          return <BsCircle key={idx} onClick={()=>handleClickIndexes(idx)}/>
         })}
       </div>
       <IoCaretForward 

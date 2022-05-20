@@ -1,0 +1,42 @@
+.searchDBMovies{
+  grid-area: db;
+  display: flex;
+  flex-flow: column;
+  padding-bottom: 4rem;
+  gap: 2rem;
+  width: 100%;
+  background: $dark-color2;
+  min-height: 31rem;
+  position: relative;
+
+  .current-results{
+    color: $light-shade;
+    font-size: 1.5rem;
+    font-family: inherit;
+    opacity: 0.9;
+    margin-left: 1rem;
+  }
+
+  .no-results{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $light-shade;
+    font-size: 2rem;
+    opacity: 0.7;
+    font-family: inherit;
+  }
+}
+
+.searchDBMovies:before{
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: $dark-color2;
+  left: -100vw;
+  right: -100vw;
+}

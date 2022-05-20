@@ -4,6 +4,7 @@ import Spinner from '../Spinner'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useInterval from 'use-interval'
+import { BiErrorCircle } from 'react-icons/bi'
 
 const variants = {
   hidden: {
@@ -21,7 +22,7 @@ const variants = {
 }
 
 const UpcomingCard = () => {
-  const { data, isLoading, isError, isSuccess, error } = useGetUpcomingMoviesQuery()
+  const { data, isLoading, isError, error } = useGetUpcomingMoviesQuery()
   const [ movieIndex, setMovieIndex ] = useState(0)
   const [ movie, setMovie ] = useState(null)
 
@@ -54,16 +55,20 @@ const UpcomingCard = () => {
     setMovieIndex(movieIndex - 1)
   }
 
-
-  if(isLoading){
-    return (
-        <Spinner />
-    )
-  }
   if(isError){
     return (
       <div className='upcoming-card'>
-        <div>An error has occured: {error}</div>
+        <div className='error-card'>
+          <BiErrorCircle className='icon' />
+          <div className='error-msg'>An error has occured: "{error}"</div>
+        </div>
+      </div>
+    )
+  }
+  if(!movie || isLoading){
+    return (
+      <div className='upcoming-card'>
+        <Spinner />
       </div>
     )
   }
@@ -74,7 +79,7 @@ const UpcomingCard = () => {
           key={movieIndex}
         >
           <motion.img
-            src={(movie && movie.posters.length > 0) ? movie.posters[0] : null}
+            src={(movie.posters.length > 0) ? movie.posters[0] : null}
             alt='image not found'
             variants={variants}
             initial='hidden'
@@ -89,8 +94,8 @@ const UpcomingCard = () => {
             exit='exit'
           >
             <div className='header'>Upcoming Movies</div>
-            <div className='title'>{movie ? movie.movieDetails.title : 'N/a'}</div>
-            <div className='release-date'>Release Date: {movie ? movie.movieDetails.release_date : 'N/a'}</div>
+            <div className='title'>{movie.movieDetails.title}</div>
+            <div className='release-date'>Release Date: {movie.movieDetails.release_date}</div>
           </motion.div>
         </motion.div>
       </AnimatePresence>

@@ -1,0 +1,24 @@
+
+.rating-icon{
+  height: 3.5rem;
+  width: 3.5rem;
+  position: absolute;
+  border-radius: 50%;
+  background: #032541;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .rating{
+    color: $light-shade;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .icon{
+    align-self: center;
+    font-size: 0.7rem;
+  }
+}

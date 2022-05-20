@@ -1,72 +1,155 @@
 .popular-card{
   width: 100%;
-  height: 95%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top;
+  height: 93%;
   background-color: $dark-accent;
   display: grid;
   grid-template-areas: 
-    'title . '
+    'title title '
     'poster    . '
     'poster indexer'
     'poster details'
   ;
   grid-template-rows: 6rem 1fr 1fr 106px;
   grid-template-columns: 16rem 1fr;
-  // position: relative;
+  position: relative;
 
   .title{
+    position: relative;
+    z-index: 1;
     grid-area: title;
-    padding:  0.5rem 1rem;
     align-self: start;
     justify-self: start;
     margin-left: 2rem;
     margin-top: 1.5rem;
     font-size: 1.2rem;
-    color: $dark-shade;
-    background: $light-shade;
-    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
+
+    .icon{
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
+    .icon:hover{
+      cursor: pointer;
+    }
+    .options-container{
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+
+      .category{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        padding:  0.5rem 1rem;
+        color: $dark-accent;
+        background: $light-shade;
+        box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
                   0 4px 25px 0px rgb(0 0 0 / 12%), 
                   0 8px 10px -5px rgb(0 0 0 / 20%);
-  }
-  
-  .poster-container{
-    grid-area: poster;
-    align-self: end;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-    width: 90%;
-    img{
-      // margin-left: 2rem;
-      // margin-bottom: 2rem;
-      // align-self: end;
-  
-      width: 90%;
-      border-radius: 5px;
-      z-index: 1;
-      box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
-                    0 4px 25px 0px rgb(0 0 0 / 12%), 
+      }
+      .option{
+        padding:  0.5rem 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        color: $dark-accent;
+        background: $light-shade;
+        box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
+                  0 4px 25px 0px rgb(0 0 0 / 12%), 
+                  0 8px 10px -5px rgb(0 0 0 / 20%);
+      }
+      .option:last-of-type{
+        box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
+                    0 20px 25px 0px rgb(0 0 0 / 12%), 
                     0 8px 10px -5px rgb(0 0 0 / 20%);
+      }
+
+      .option:hover{
+        cursor: default;
+        background: #D3D3D3;
+      }
     }
   }
 
+  .backdrop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+  }
+  
+  .poster{
+    grid-area: poster;
+    width: 90%;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    align-self: end;
+    z-index: 1;
+    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
+                0 4px 25px 0px rgb(0 0 0 / 12%), 
+                0 8px 10px -5px rgb(0 0 0 / 20%);
+  }
+  
+
   .indexer{
+    z-index: 1;
     font-size: 0.9rem;
     grid-area: indexer;
     align-self: end;
     justify-self: center;
     margin: 1rem 0;
+    color: $dark-accent;
+    transition: 0.3s;
+  }
+
+  .indexer:hover{
     color: $light-shade;
   }
 
   .movie-title{
     align-self: center;
+    justify-self: start;
     font-size: 2.5rem;
     margin-left: 2rem;
     padding: 1rem;
     grid-area: details;
     line-height: 1;
     color: $light-shade;
+  }
+
+  .loading-card{
+    grid-column: 2;
+    grid-row: 2 / 4;
+    align-self: center;
+    justify-self: start;
+    margin-left: 30%;
+
+    .spinner{
+      height: 4rem;
+      width: 4rem;
+      border: 5px solid $dark-accent;
+      border-top: 5px solid $light-shade;
+    }
+  }
+
+  .error-card{
+    grid-column: 2;
+    grid-row: 2 / 4;
+    align-self: center;
+    justify-self: start;
+    width: 100%;
+
+    .icon{
+      font-size: 5rem;
+      margin-left: 30%;
+    }
+    .error-msg{
+      margin-left: 15%;
+    }
   }
 }
