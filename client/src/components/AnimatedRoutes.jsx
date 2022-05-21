@@ -6,6 +6,8 @@ import Register from './Register'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './Navbar'
+import { useState, useEffect } from 'react' 
+import Backdrop from './Backdrop'
 
 const variants = {
   hidden: {
@@ -20,6 +22,16 @@ const variants = {
 
 const AnimatedRoutes = () => {
   const location = useLocation()
+  const [ movie, setMovie ] = useState(null)
+  const [ isOpen, setIsOpen ] = useState(true)
+
+  useEffect(() => {
+    if(isOpen){
+      document.body.style.overflow = 'hidden'
+      return
+    }
+    document.body.style.overflow = 'auto'
+  },[isOpen])
 
   return (
     <>
@@ -35,6 +47,13 @@ const AnimatedRoutes = () => {
         <Route path='/search' element={<SearchPage />}/>
       </Routes>
     </AnimatePresence>
+    {isOpen && 
+      <Backdrop
+        onClick={()=>setIsOpen(prev => !prev)}
+      >
+        
+      </Backdrop>
+    }
     </>
   )
 }

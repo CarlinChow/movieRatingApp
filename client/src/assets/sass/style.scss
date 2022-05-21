@@ -14,9 +14,11 @@
 
 .app{
   width: 100vw;
+  overflow-x: hidden;
   font-family: 'Roboto', Helvetica, sans-serif;
   line-height: 1.6;
   display: flex;
   flex-flow: column;
   align-items: center;
+  position: relative;
 }

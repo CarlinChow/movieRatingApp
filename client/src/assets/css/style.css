@@ -1118,6 +1118,20 @@
   border-radius: 15px 0 0 15px;
 }
 
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: bottom;
+  background: rgba(0, 0, 0, 0.6980392157);
+  overflow-y: hidden;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -1126,9 +1140,11 @@
 
 .app {
   width: 100vw;
+  overflow-x: hidden;
   font-family: "Roboto", Helvetica, sans-serif;
   line-height: 1.6;
   display: flex;
   flex-flow: column;
   align-items: center;
+  position: relative;
 }
