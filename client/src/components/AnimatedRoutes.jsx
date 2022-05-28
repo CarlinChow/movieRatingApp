@@ -6,8 +6,9 @@ import Register from './Register'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './Navbar'
-import { useState, useEffect } from 'react' 
+import React, { useState, useEffect } from 'react' 
 import Backdrop from './Backdrop'
+import MovieModal from './MovieModal'
 
 const variants = {
   hidden: {
@@ -20,40 +21,32 @@ const variants = {
   }
 }
 
+export const MovieContext = React.createContext()
+
 const AnimatedRoutes = () => {
   const location = useLocation()
   const [ movie, setMovie ] = useState(null)
-  const [ isOpen, setIsOpen ] = useState(true)
-
-  useEffect(() => {
-    if(isOpen){
-      document.body.style.overflow = 'hidden'
-      return
-    }
-    document.body.style.overflow = 'auto'
-  },[isOpen])
-
   return (
     <>
     {!location.pathname.startsWith('/auth') && <Navbar/>}
     {/* {!inView && <Navbar style={{position: 'fixed', zIndex: 2}} variants={variants} />} */}
     <AnimatePresence exitBeforeEnter>
-      <Routes key={location.pathname} location={location}>
-        <Route path='/' element={<HomePage />}/>
-        <Route path='auth' element={<AuthPage />}>
-          <Route path="login" element={<Login />}/>
-          <Route path="register" element={<Register />}/>
-        </Route>
-        <Route path='/search' element={<SearchPage />}/>
-      </Routes>
+      <MovieContext.Provider value={{setMovie: setMovie}}>
+        <Routes key={location.pathname} location={location}>
+          <Route path='auth' element={<AuthPage />}>
+            <Route path="login" element={<Login />}/>
+            <Route path="register" element={<Register />}/>
+          </Route>
+            <Route path='/' element={<HomePage />}/>
+            <Route path='/search' element={<SearchPage />}/>
+        </Routes>
+      </MovieContext.Provider>
     </AnimatePresence>
-    {isOpen && 
-      <Backdrop
-        onClick={()=>setIsOpen(prev => !prev)}
-      >
-        
-      </Backdrop>
-    }
+    <AnimatePresence>
+      {movie && 
+        <MovieModal movie={movie} setMovie={setMovie}/>
+      }
+    </AnimatePresence>
     </>
   )
 }

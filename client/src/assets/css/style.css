@@ -1118,18 +1118,276 @@
   border-radius: 15px 0 0 15px;
 }
 
-.backdrop {
-  position: absolute;
+.darken-backdrop {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
   z-index: 2;
+  display: grid;
+  grid-template-rows: 25vh 1fr;
+  grid-template-columns: min(1500px, 100vw);
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6980392157);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.modal-backdrop {
+  grid-row: 2;
+  width: 100vw;
+  min-width: 1500px;
+  height: 75vh;
+  position: absolute;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
   display: flex;
   justify-content: center;
-  align-items: bottom;
-  background: rgba(0, 0, 0, 0.6980392157);
-  overflow-y: hidden;
+}
+.modal-backdrop .modal-header {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-areas: "poster info" "poster actions" "poster overview";
+  width: 100%;
+  max-width: 1500px;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto 1fr;
+  row-gap: 1rem;
+  padding: 5.5rem 4rem;
+}
+.modal-backdrop .modal-header .poster {
+  grid-area: poster;
+  width: 100%;
+}
+.modal-backdrop .modal-header .info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  align-items: flex-start;
+  position: relative;
+}
+.modal-backdrop .modal-header .info .close-btn {
+  color: #ECEDEB;
+  position: absolute;
+  font-size: 3rem;
+  right: 0;
+  top: -3rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+.modal-backdrop .modal-header .info .close-btn:hover {
+  opacity: 1;
+}
+.modal-backdrop .modal-header .info .title {
+  font-size: 4rem;
+  color: #ECEDEB;
+  line-height: 1.2;
+}
+.modal-backdrop .modal-header .info .extra-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #ECEDEB;
+  opacity: 0.9;
+  font-size: 1.2rem;
+}
+.modal-backdrop .modal-header .info .extra-info .genres {
+  display: flex;
+  gap: 0.5rem;
+}
+.modal-backdrop .modal-header .actions {
+  grid-area: actions;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.modal-backdrop .modal-header .actions .rating-icon {
+  position: relative;
+}
+.modal-backdrop .modal-header .actions .play-btn {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  color: #ECEDEB;
+  gap: 0.25rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease-in-out;
+}
+.modal-backdrop .modal-header .actions .play-btn .icon {
+  font-size: 1.8rem;
+}
+.modal-backdrop .modal-header .actions .play-btn:hover {
+  opacity: 1;
+  cursor: default;
+}
+.modal-backdrop .modal-header .actions .add-btn {
+  color: #ECEDEB;
+  font-size: 2rem;
+}
+.modal-backdrop .modal-header .overview {
+  grid-area: overview;
+  color: #ECEDEB;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.modal-backdrop .modal-header .overview .tagline {
+  font-style: italic;
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+.modal-backdrop .modal-header .overview .desc {
+  opacity: 0.8;
+}
+
+.modal {
+  background: #ECEDEB;
+  width: 100%;
+  grid-row: 2;
+  position: static;
+}
+.modal .modal-content {
+  margin-top: 75vh;
+  width: 100%;
+  max-width: 1500px;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.modal .modal-content .title {
+  font-size: 3rem;
+  font-family: inherit;
+  color: #405563;
+}
+.modal .modal-content .video-player {
+  grid-column: 1/4;
+}
+
+.modal:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: inherit;
+  left: -100vw;
+  right: -100vw;
+}
+
+.video-player {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  width: 100%;
+}
+.video-player .header {
+  font-size: 3rem;
+  color: #405563;
+  margin-left: 1rem;
+}
+.video-player .video {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+.video-player .video-sidebar {
+  align-self: center;
+  grid-column: 3/5;
+  margin-left: 2rem;
+  border-radius: 5px;
+  height: 24rem;
+  padding: 1rem 1.5rem;
+  background: #7B7D83;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: rgba(17, 12, 46, 0.3) 0px 48px 100px 0px;
+}
+.video-player .video-sidebar .video-controls {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  gap: 1rem;
+  border-bottom: 1px solid #ECEDEB;
+  padding-bottom: 1rem;
+}
+.video-player .video-sidebar .video-controls .expand-btn {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  gap: 0.25rem;
+  background: #ECEDEB;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  color: #676E77;
+  cursor: default;
+}
+.video-player .video-sidebar .video-controls .expand-btn .icon {
+  font-size: 1.5rem;
+}
+.video-player .video-sidebar .video-controls .nav-btn {
+  background: #ECEDEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+}
+.video-player .video-sidebar .video-controls .nav-btn .icon {
+  font-size: 1.7rem;
+  color: #676E77;
+}
+.video-player .video-sidebar .video-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.5rem;
+  row-gap: 0.25rem;
+  overflow-y: auto;
+  max-height: 100%;
+}
+.video-player .video-sidebar .video-list .video-card {
+  display: flex;
+  width: 100%;
+  transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
+  max-height: 6rem;
+  gap: 0.25rem;
+}
+.video-player .video-sidebar .video-list .video-card img {
+  width: 50%;
+}
+.video-player .video-sidebar .video-list .video-card .video-title {
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 0.5rem;
+  color: #ECEDEB;
+  opacity: 0.9;
+  overflow: hidden;
+}
+.video-player .video-sidebar .video-list .video-card:hover {
+  cursor: pointer;
+}
+.video-player .video-sidebar .video-list .video-card.selected {
+  background: #676E77;
+}
+.video-player .video-sidebar .video-list.expanded {
+  grid-template-columns: 1fr;
+}
+.video-player .video-sidebar .video-list::-webkit-scrollbar {
+  display: none;
+}
+.video-player .video-sidebar.expanded {
+  grid-column: 4/5;
+  height: 35rem;
+  margin-left: 0;
+  border-radius: 0 5px 5px 0;
+  padding: 1rem;
 }
 
 * {

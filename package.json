@@ -22,7 +22,8 @@
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
-    "npm": "^8.6.0"
+    "npm": "^8.6.0",
+    "react-player": "^2.10.1"
   },
   "devDependencies": {
     "concurrently": "^7.1.0",

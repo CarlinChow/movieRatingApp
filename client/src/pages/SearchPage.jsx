@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { useSearchMovieTitle } from '../hooks/useSearchMovieTitle'
 import { useGetMoviesQuery, useGetSearchedMoviesQuery } from '../features/movies/moviesApi'
 
-const SearchPage = () => {
+const SearchPage = ({overflow}) => {
   const [ searchQuery, setSearchQuery ] = useState('')
   const [ currentSearchQuery, setCurrentSearchQuery ] = useState(null)
   const [ page, setPage ] = useState(1)

@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 import { motion, AnimatePresence } from 'framer-motion'
+import { MovieContext } from '../AnimatedRoutes'
+
 
 const initialVariants = {
   hidden: {
@@ -40,6 +42,7 @@ const slideVariants = {
 }
 
 const MovieCarousel = ({movies, myKey}) => {
+  const { setMovie } = useContext(MovieContext)
   let count = movies.length
   const [ direction, setDirection ] = useState(0)
   const [ tabs, setTabs ] = useState(1)
@@ -106,6 +109,7 @@ const MovieCarousel = ({movies, myKey}) => {
             if(idx < 6 * tabs && idx >= 6 * (tabs - 1)){
               return(
                   <motion.div
+                    onClick={()=>setMovie(movie)}
                     whileHover={{
                       scale: 1.4,
                       zIndex: 1,
